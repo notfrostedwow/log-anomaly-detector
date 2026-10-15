@@ -1,0 +1,10 @@
+$ & ./.tmp/capture-console.ps1
+Result: Dedicated console window not available
+exit_code=1
+
+The workspace-local attempt launched a dedicated conhost console running the
+actual CLI and attempted to capture only that process's window with PrintWindow.
+No capturable MainWindowHandle was available. The helper was closed in finally.
+No screenshot was saved, and no substitute image was generated. The exact CLI
+output is preserved in cli-demo.txt and samples/report.txt instead. Temporary
+capture scripts remain ignored under .tmp for local parent inspection.

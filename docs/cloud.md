@@ -111,10 +111,12 @@ authorized sandbox. This is unsuitable for a production alerting dependency.
 .venv/Scripts/python tools/validate_iac.py
 ```
 
-This runs `cfn-lint --template infra/template.yaml --regions us-east-1` with
+This runs `cfn-lint --config-file infra/cfnlintrc.json --template
+infra/template.yaml --regions us-east-1` with
 network socket connections and DNS resolution disabled. It supplies placeholder
 AWS values and a workspace-local config so validation does not read an account
-profile or discover credentials. Installed/bundled schemas are used; schema
+profile or discover credentials. The explicit cfn-lint config also disables its
+usual user-config search. Installed/bundled schemas are used; schema
 updates are not requested. See [verification.md](verification.md) and saved
 [validation/checks.txt](validation/checks.txt). This is neither a live plan nor a
 deployment test. SAM CLI is not required for this check and was not installed.
