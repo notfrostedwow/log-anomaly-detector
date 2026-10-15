@@ -343,3 +343,63 @@ def test_cli_bad_arguments_are_not_echoed(capsys):
 def test_cli_missing_path_is_not_echoed(capsys):
     assert main(["nonexistent\x1b[31m", "--format", "jsonl"]) == 2
     assert "\x1b" not in capsys.readouterr().err
+
+
+def test_windows_network_device_and_stream_paths_rejected_before_read():
+    import os
+    from pathlib import Path
+
+    paths = [Path(r"\\server.invalid\share\events.jsonl")]
+    if os.name == "nt":
+        paths += [Path("NUL"), Path("events.jsonl:stream")]
+    for path in paths:
+        with pytest.raises(ValidationError), regular_file(path):
+            pytest.fail("unsafe path was opened")
+
+
+def test_success_does_not_reset_failure_window():
+    result = findings([row(0), row(1, outcome="success"), row(2)], burst_threshold=2)
+    assert len(result) == 1
+    assert result[0]["count"] == 2
+
+
+def test_sliding_rules_match_small_independent_window_oracle():
+    # This deliberately recomputes each full window, independent of deque state.
+    rows = [
+        row(
+            (i * 37) % 720,
+            user=f"person{i % 7}",
+            source=f"192.0.2.{i % 3 + 1}",
+            outcome="success" if i % 11 == 0 else "failure",
+        )
+        for i in range(90)
+    ]
+    parsed = events(*rows, rows[0])
+    actual = analyze(list(reversed(parsed)), Config(burst_threshold=3, spray_threshold=3))
+    failed = sorted({event for event in parsed if event.outcome == "failure"})
+    expected = set()
+    for source in {event.source_ip for event in failed}:
+        group = [event for event in failed if event.source_ip == source]
+        for endpoint in {event.timestamp for event in group}:
+            window = [
+                event for event in group if 0 <= (endpoint - event.timestamp).total_seconds() <= 300
+            ]
+            distinct = {event.user for event in window}
+            if len(distinct) >= 3:
+                expected.add(("password_spray", source, None, endpoint, len(distinct)))
+            # Burst endpoints must be observed for that user, not other users.
+            for user in {event.user for event in group if event.timestamp == endpoint}:
+                count = sum(event.user == user for event in window)
+                if count >= 3:
+                    expected.add(("failed_login_burst", source, user, endpoint, count))
+    actual_set = {
+        (
+            item["rule"],
+            item["source_ip"],
+            item["user"],
+            datetime.fromisoformat(item["window_end"].replace("Z", "+00:00")),
+            item["count"],
+        )
+        for item in actual["findings"]
+    }
+    assert actual_set == expected

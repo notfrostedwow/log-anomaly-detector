@@ -1,5 +1,6 @@
 """Record installed distribution license declarations without contacting a registry."""
 
+import hashlib
 import importlib.metadata
 import json
 from pathlib import Path
@@ -16,6 +17,10 @@ def main() -> None:
             for path in distribution.files or []
             if "license" in str(path).lower() or "copying" in str(path).lower()
         ]
+        license_hashes = {
+            path: hashlib.sha256(distribution.locate_file(path).read_bytes()).hexdigest()
+            for path in licenses
+        }
         record = {
             "name": meta["Name"],
             "version": meta["Version"],
@@ -25,6 +30,7 @@ def main() -> None:
                 v for v in meta.get_all("Classifier", []) if v.startswith("License ::")
             ],
             "installed_license_files": sorted(licenses),
+            "license_file_sha256": license_hashes,
         }
         records.append(record)
     target = Path(__file__).resolve().parents[1] / "docs" / "dependency-licenses.json"

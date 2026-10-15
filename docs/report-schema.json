@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:log-anomaly-detector:report:1.0",
+  "title": "Log anomaly detector report 1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "tool_version", "settings", "baseline", "input", "finding_count", "findings"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "tool_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["window_seconds", "burst_threshold", "spray_threshold", "max_file_bytes", "max_line_bytes", "max_events", "max_findings"],
+      "properties": {
+        "window_seconds": {"type": "integer", "minimum": 1, "maximum": 86400},
+        "burst_threshold": {"type": "integer", "minimum": 2, "maximum": 1000},
+        "spray_threshold": {"type": "integer", "minimum": 2, "maximum": 1000},
+        "max_file_bytes": {"type": "integer", "minimum": 1, "maximum": 8388608},
+        "max_line_bytes": {"type": "integer", "minimum": 1, "maximum": 16384},
+        "max_events": {"type": "integer", "minimum": 1, "maximum": 20000},
+        "max_findings": {"type": "integer", "minimum": 1, "maximum": 2000}
+      }
+    },
+    "baseline": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "users"],
+      "properties": {
+        "mode": {"const": "explicit_per_user_success_only"},
+        "users": {"type": "integer", "minimum": 0, "maximum": 1000}
+      }
+    },
+    "input": {
+      "type": "object", "additionalProperties": false,
+      "required": ["events", "unique_events", "duplicates_removed", "start", "end"],
+      "properties": {
+        "events": {"type": "integer", "minimum": 0, "maximum": 20000},
+        "unique_events": {"type": "integer", "minimum": 0, "maximum": 20000},
+        "duplicates_removed": {"type": "integer", "minimum": 0, "maximum": 20000},
+        "start": {"anyOf": [{"$ref": "#/$defs/utc"}, {"type": "null"}]},
+        "end": {"anyOf": [{"$ref": "#/$defs/utc"}, {"type": "null"}]}
+      }
+    },
+    "finding_count": {"type": "integer", "minimum": 0, "maximum": 2000},
+    "findings": {
+      "type": "array", "maxItems": 2000,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["rule", "source_ip", "user", "window_start", "window_end", "count", "explanation"],
+        "properties": {
+          "rule": {"enum": ["failed_login_burst", "password_spray", "unusual_source"]},
+          "source_ip": {"type": "string", "minLength": 2, "maxLength": 45},
+          "user": {"type": ["string", "null"], "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,63}$"},
+          "window_start": {"$ref": "#/$defs/utc"},
+          "window_end": {"$ref": "#/$defs/utc"},
+          "count": {"type": "integer", "minimum": 1, "maximum": 20000},
+          "explanation": {"type": "string", "maxLength": 512}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "utc": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{6}Z$"}
+  }
+}

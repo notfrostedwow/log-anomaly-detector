@@ -1,0 +1,82 @@
+Offline wheel build and clean-install smoke check.
+
+$ .venv\Scripts\python.exe -m pip wheel --no-index --no-deps --no-build-isolation --wheel-dir artifacts .
+Processing c:\users\zaheer\documents\portfolio\log-anomaly-detector
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: log-anomaly-detector
+  Building wheel for log-anomaly-detector (pyproject.toml): started
+  Building wheel for log-anomaly-detector (pyproject.toml): finished with status 'done'
+  Created wheel for log-anomaly-detector: filename=log_anomaly_detector-0.1.0-py3-none-any.whl size=16444 sha256=d3f854aeeb76df1cfbb906100f23923ea27be2729efc1214a86584d188467bab
+  Stored in directory: c:\users\zaheer\documents\portfolio\log-anomaly-detector\.cache\pip\wheels\49\e4\75\e37ffec5b3abd950a13fee02e95d83f33be43bb41d9a096809
+Successfully built log-anomaly-detector
+exit_code=0 (expected 0)
+Wheel LICENSE matches approved source; License-Expression: MIT present.
+
+$ .tmp\wheel-smoke\Scripts\python.exe -m pip install --force-reinstall --no-index --no-deps artifacts\log_anomaly_detector-0.1.0-py3-none-any.whl
+Processing c:\users\zaheer\documents\portfolio\log-anomaly-detector\artifacts\log_anomaly_detector-0.1.0-py3-none-any.whl
+Installing collected packages: log-anomaly-detector
+  Attempting uninstall: log-anomaly-detector
+    Found existing installation: log-anomaly-detector 0.1.0
+    Uninstalling log-anomaly-detector-0.1.0:
+      Successfully uninstalled log-anomaly-detector-0.1.0
+Successfully installed log-anomaly-detector-0.1.0
+exit_code=0 (expected 0)
+
+$ .tmp\wheel-smoke\Scripts\log-anomaly-detector.exe samples/auth.jsonl --format jsonl --config samples/config.json --json
+{
+  "baseline": {
+    "mode": "explicit_per_user_success_only",
+    "users": 2
+  },
+  "finding_count": 3,
+  "findings": [
+    {
+      "count": 5,
+      "explanation": "5 failed logins for mira from 192.0.2.44 in the inclusive 300s window; threshold 5.",
+      "rule": "failed_login_burst",
+      "source_ip": "192.0.2.44",
+      "user": "mira",
+      "window_end": "2026-01-01T00:00:04.000000Z",
+      "window_start": "2025-12-31T23:55:04.000000Z"
+    },
+    {
+      "count": 5,
+      "explanation": "Failed logins for 5 distinct users from 198.51.100.20 in the inclusive 300s window; threshold 5.",
+      "rule": "password_spray",
+      "source_ip": "198.51.100.20",
+      "user": null,
+      "window_end": "2026-01-01T00:10:00.000000Z",
+      "window_start": "2026-01-01T00:05:00.000000Z"
+    },
+    {
+      "count": 1,
+      "explanation": "Successful login for mira from 203.0.113.9; source is absent from this user's explicit baseline. First occurrence per user/source.",
+      "rule": "unusual_source",
+      "source_ip": "203.0.113.9",
+      "user": "mira",
+      "window_end": "2026-01-01T00:20:00.000000Z",
+      "window_start": "2026-01-01T00:20:00.000000Z"
+    }
+  ],
+  "input": {
+    "duplicates_removed": 1,
+    "end": "2026-01-01T00:21:00.000000Z",
+    "events": 13,
+    "start": "2026-01-01T00:00:00.000000Z",
+    "unique_events": 12
+  },
+  "schema_version": "1.0",
+  "settings": {
+    "burst_threshold": 5,
+    "max_events": 20000,
+    "max_file_bytes": 8388608,
+    "max_findings": 2000,
+    "max_line_bytes": 16384,
+    "spray_threshold": 5,
+    "window_seconds": 300
+  },
+  "tool_version": "0.1.0"
+}
+exit_code=1 (expected 1)
+Clean wheel-installed console script matches committed sample report.

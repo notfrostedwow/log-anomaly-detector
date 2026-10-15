@@ -1,0 +1,161 @@
+Actual local CLI subprocess output (synthetic data).
+
+$ log-anomaly-detector.exe samples/auth.jsonl --format jsonl --config samples/config.json
+Authentication analysis | schema 1.0 | offline rules
+Events: 13 | unique: 12 | duplicates removed: 1
+Findings: 3
+[failed_login_burst] 2026-01-01T00:00:04.000000Z 5 failed logins for mira from 192.0.2.44 in the inclusive 300s window; threshold 5.
+[password_spray] 2026-01-01T00:10:00.000000Z Failed logins for 5 distinct users from 198.51.100.20 in the inclusive 300s window; threshold 5.
+[unusual_source] 2026-01-01T00:20:00.000000Z Successful login for mira from 203.0.113.9; source is absent from this user's explicit baseline. First occurrence per user/source.
+exit_code=1 (expected 1)
+
+$ log-anomaly-detector.exe samples/auth.jsonl --format jsonl --config samples/config.json --json
+{
+  "baseline": {
+    "mode": "explicit_per_user_success_only",
+    "users": 2
+  },
+  "finding_count": 3,
+  "findings": [
+    {
+      "count": 5,
+      "explanation": "5 failed logins for mira from 192.0.2.44 in the inclusive 300s window; threshold 5.",
+      "rule": "failed_login_burst",
+      "source_ip": "192.0.2.44",
+      "user": "mira",
+      "window_end": "2026-01-01T00:00:04.000000Z",
+      "window_start": "2025-12-31T23:55:04.000000Z"
+    },
+    {
+      "count": 5,
+      "explanation": "Failed logins for 5 distinct users from 198.51.100.20 in the inclusive 300s window; threshold 5.",
+      "rule": "password_spray",
+      "source_ip": "198.51.100.20",
+      "user": null,
+      "window_end": "2026-01-01T00:10:00.000000Z",
+      "window_start": "2026-01-01T00:05:00.000000Z"
+    },
+    {
+      "count": 1,
+      "explanation": "Successful login for mira from 203.0.113.9; source is absent from this user's explicit baseline. First occurrence per user/source.",
+      "rule": "unusual_source",
+      "source_ip": "203.0.113.9",
+      "user": "mira",
+      "window_end": "2026-01-01T00:20:00.000000Z",
+      "window_start": "2026-01-01T00:20:00.000000Z"
+    }
+  ],
+  "input": {
+    "duplicates_removed": 1,
+    "end": "2026-01-01T00:21:00.000000Z",
+    "events": 13,
+    "start": "2026-01-01T00:00:00.000000Z",
+    "unique_events": 12
+  },
+  "schema_version": "1.0",
+  "settings": {
+    "burst_threshold": 5,
+    "max_events": 20000,
+    "max_file_bytes": 8388608,
+    "max_findings": 2000,
+    "max_line_bytes": 16384,
+    "spray_threshold": 5,
+    "window_seconds": 300
+  },
+  "tool_version": "0.1.0"
+}
+exit_code=1 (expected 1)
+
+$ log-anomaly-detector.exe samples/auth.csv --format csv --config samples/config.json --json
+{
+  "baseline": {
+    "mode": "explicit_per_user_success_only",
+    "users": 2
+  },
+  "finding_count": 3,
+  "findings": [
+    {
+      "count": 5,
+      "explanation": "5 failed logins for mira from 192.0.2.44 in the inclusive 300s window; threshold 5.",
+      "rule": "failed_login_burst",
+      "source_ip": "192.0.2.44",
+      "user": "mira",
+      "window_end": "2026-01-01T00:00:04.000000Z",
+      "window_start": "2025-12-31T23:55:04.000000Z"
+    },
+    {
+      "count": 5,
+      "explanation": "Failed logins for 5 distinct users from 198.51.100.20 in the inclusive 300s window; threshold 5.",
+      "rule": "password_spray",
+      "source_ip": "198.51.100.20",
+      "user": null,
+      "window_end": "2026-01-01T00:10:00.000000Z",
+      "window_start": "2026-01-01T00:05:00.000000Z"
+    },
+    {
+      "count": 1,
+      "explanation": "Successful login for mira from 203.0.113.9; source is absent from this user's explicit baseline. First occurrence per user/source.",
+      "rule": "unusual_source",
+      "source_ip": "203.0.113.9",
+      "user": "mira",
+      "window_end": "2026-01-01T00:20:00.000000Z",
+      "window_start": "2026-01-01T00:20:00.000000Z"
+    }
+  ],
+  "input": {
+    "duplicates_removed": 1,
+    "end": "2026-01-01T00:21:00.000000Z",
+    "events": 13,
+    "start": "2026-01-01T00:00:00.000000Z",
+    "unique_events": 12
+  },
+  "schema_version": "1.0",
+  "settings": {
+    "burst_threshold": 5,
+    "max_events": 20000,
+    "max_file_bytes": 8388608,
+    "max_findings": 2000,
+    "max_line_bytes": 16384,
+    "spray_threshold": 5,
+    "window_seconds": 300
+  },
+  "tool_version": "0.1.0"
+}
+exit_code=1 (expected 1)
+
+$ log-anomaly-detector.exe samples/quiet.jsonl --format jsonl
+Authentication analysis | schema 1.0 | offline rules
+Events: 1 | unique: 1 | duplicates removed: 0
+Findings: 0
+exit_code=0 (expected 0)
+
+$ python.exe -m log_anomaly_detector.cli samples/auth.jsonl --format jsonl --config samples/config.json
+Authentication analysis | schema 1.0 | offline rules
+Events: 13 | unique: 12 | duplicates removed: 1
+Findings: 3
+[failed_login_burst] 2026-01-01T00:00:04.000000Z 5 failed logins for mira from 192.0.2.44 in the inclusive 300s window; threshold 5.
+[password_spray] 2026-01-01T00:10:00.000000Z Failed logins for 5 distinct users from 198.51.100.20 in the inclusive 300s window; threshold 5.
+[unusual_source] 2026-01-01T00:20:00.000000Z Successful login for mira from 203.0.113.9; source is absent from this user's explicit baseline. First occurrence per user/source.
+exit_code=1 (expected 1)
+
+$ log-anomaly-detector.exe --version
+0.1.0
+exit_code=0 (expected 0)
+
+$ log-anomaly-detector.exe --help
+usage: log-anomaly-detector [-h] --format {jsonl,csv} [--config CONFIG]
+                            [--json] [--version]
+                            input
+
+Offline authentication-log rules
+
+positional arguments:
+  input                 regular UTF-8 JSONL or CSV file
+
+options:
+  -h, --help            show this help message and exit
+  --format {jsonl,csv}
+  --config CONFIG       strict JSON configuration
+  --json                emit stable schema-versioned JSON
+  --version             show program's version number and exit
+exit_code=0 (expected 0)

@@ -1,0 +1,6 @@
+Authentication analysis | schema 1.0 | offline rules
+Events: 13 | unique: 12 | duplicates removed: 1
+Findings: 3
+[failed_login_burst] 2026-01-01T00:00:04.000000Z 5 failed logins for mira from 192.0.2.44 in the inclusive 300s window; threshold 5.
+[password_spray] 2026-01-01T00:10:00.000000Z Failed logins for 5 distinct users from 198.51.100.20 in the inclusive 300s window; threshold 5.
+[unusual_source] 2026-01-01T00:20:00.000000Z Successful login for mira from 203.0.113.9; source is absent from this user's explicit baseline. First occurrence per user/source.

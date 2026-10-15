@@ -39,10 +39,16 @@ def main() -> None:
     from cfnlint.runner import main as lint_main
 
     os.chdir(root)
-    sys.argv = ["cfn-lint", "--template", "infra/template.yaml", "--regions", "us-east-1"]
-    print(
-        "cfn-lint --template infra/template.yaml --regions us-east-1 (network disabled)", flush=True
-    )
+    sys.argv = [
+        "cfn-lint",
+        "--config-file",
+        "infra/cfnlintrc.json",
+        "--template",
+        "infra/template.yaml",
+        "--regions",
+        "us-east-1",
+    ]
+    print(" ".join(sys.argv) + " (network disabled)", flush=True)
     lint_main()
 
 
