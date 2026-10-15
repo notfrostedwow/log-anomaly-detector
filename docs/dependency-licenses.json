@@ -1,0 +1,435 @@
+[
+  {
+    "installed_license_files": [
+      "annotated_types-0.8.0.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: MIT License"
+    ],
+    "license_expression": "MIT",
+    "license_metadata": null,
+    "name": "annotated-types",
+    "version": "0.8.0"
+  },
+  {
+    "installed_license_files": [
+      "attrs-26.1.0.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [],
+    "license_expression": "MIT",
+    "license_metadata": null,
+    "name": "attrs",
+    "version": "26.1.0"
+  },
+  {
+    "installed_license_files": [
+      "aws_sam_translator-1.115.0.dist-info/licenses/LICENSE",
+      "aws_sam_translator-1.115.0.dist-info/licenses/NOTICE",
+      "aws_sam_translator-1.115.0.dist-info/licenses/THIRD_PARTY_LICENSES"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: Apache Software License"
+    ],
+    "license_expression": null,
+    "license_metadata": "Apache License 2.0",
+    "name": "aws-sam-translator",
+    "version": "1.115.0"
+  },
+  {
+    "installed_license_files": [
+      "boto3-1.43.114.dist-info/LICENSE"
+    ],
+    "license_classifiers": [],
+    "license_expression": null,
+    "license_metadata": "Apache-2.0",
+    "name": "boto3",
+    "version": "1.43.114"
+  },
+  {
+    "installed_license_files": [
+      "botocore-1.43.114.dist-info/LICENSE.txt",
+      "botocore/data/license-manager-linux-subscriptions/2018-05-10/endpoint-rule-set-1.json.gz",
+      "botocore/data/license-manager-linux-subscriptions/2018-05-10/paginators-1.json",
+      "botocore/data/license-manager-linux-subscriptions/2018-05-10/service-2.json.gz",
+      "botocore/data/license-manager-user-subscriptions/2018-05-10/endpoint-rule-set-1.json.gz",
+      "botocore/data/license-manager-user-subscriptions/2018-05-10/paginators-1.json",
+      "botocore/data/license-manager-user-subscriptions/2018-05-10/service-2.json.gz",
+      "botocore/data/license-manager-user-subscriptions/2018-05-10/waiters-2.json",
+      "botocore/data/license-manager/2018-08-01/endpoint-rule-set-1.json.gz",
+      "botocore/data/license-manager/2018-08-01/examples-1.json",
+      "botocore/data/license-manager/2018-08-01/paginators-1.json",
+      "botocore/data/license-manager/2018-08-01/service-2.json.gz"
+    ],
+    "license_classifiers": [],
+    "license_expression": null,
+    "license_metadata": "Apache-2.0",
+    "name": "botocore",
+    "version": "1.43.114"
+  },
+  {
+    "installed_license_files": [
+      "cfn_lint-1.36.1.dist-info/licenses/LICENSE",
+      "cfn_lint-1.36.1.dist-info/licenses/NOTICE",
+      "cfnlint/data/schemas/patches/extensions/all/aws_deadline_licenseendpoint/__init__.py",
+      "cfnlint/data/schemas/patches/extensions/all/aws_deadline_licenseendpoint/__pycache__/__init__.cpython-311.pyc",
+      "cfnlint/data/schemas/patches/extensions/all/aws_deadline_licenseendpoint/boto.json",
+      "cfnlint/data/schemas/patches/extensions/all/aws_deadline_licenseendpoint/format.json",
+      "cfnlint/data/schemas/patches/extensions/all/aws_licensemanager_grant/__init__.py",
+      "cfnlint/data/schemas/patches/extensions/all/aws_licensemanager_grant/__pycache__/__init__.cpython-311.pyc",
+      "cfnlint/data/schemas/patches/extensions/all/aws_licensemanager_grant/boto.json",
+      "cfnlint/data/schemas/patches/extensions/all/aws_licensemanager_license/__init__.py",
+      "cfnlint/data/schemas/patches/extensions/all/aws_licensemanager_license/__pycache__/__init__.cpython-311.pyc",
+      "cfnlint/data/schemas/patches/extensions/all/aws_licensemanager_license/boto.json",
+      "cfnlint/data/schemas/providers/us_east_1/aws-deadline-licenseendpoint.json",
+      "cfnlint/data/schemas/providers/us_east_1/aws-licensemanager-grant.json",
+      "cfnlint/data/schemas/providers/us_east_1/aws-licensemanager-license.json"
+    ],
+    "license_classifiers": [],
+    "license_expression": "MIT-0",
+    "license_metadata": null,
+    "name": "cfn-lint",
+    "version": "1.36.1"
+  },
+  {
+    "installed_license_files": [
+      "colorama-0.4.6.dist-info/licenses/LICENSE.txt"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: BSD License"
+    ],
+    "license_expression": null,
+    "license_metadata": null,
+    "name": "colorama",
+    "version": "0.4.6"
+  },
+  {
+    "installed_license_files": [
+      "iniconfig-2.3.1.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [],
+    "license_expression": "MIT",
+    "license_metadata": null,
+    "name": "iniconfig",
+    "version": "2.3.1"
+  },
+  {
+    "installed_license_files": [
+      "jmespath-1.1.0.dist-info/LICENSE"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: MIT License"
+    ],
+    "license_expression": null,
+    "license_metadata": "MIT",
+    "name": "jmespath",
+    "version": "1.1.0"
+  },
+  {
+    "installed_license_files": [
+      "jsonpatch-1.35.dist-info/licenses/AUTHORS",
+      "jsonpatch-1.35.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [],
+    "license_expression": "BSD-3-Clause",
+    "license_metadata": null,
+    "name": "jsonpatch",
+    "version": "1.35"
+  },
+  {
+    "installed_license_files": [
+      "jsonpointer-3.2.1.dist-info/licenses/AUTHORS",
+      "jsonpointer-3.2.1.dist-info/licenses/LICENSE.txt"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: BSD License"
+    ],
+    "license_expression": null,
+    "license_metadata": "Modified BSD License",
+    "name": "jsonpointer",
+    "version": "3.2.1"
+  },
+  {
+    "installed_license_files": [
+      "jsonschema-4.26.0.dist-info/licenses/COPYING"
+    ],
+    "license_classifiers": [],
+    "license_expression": "MIT",
+    "license_metadata": null,
+    "name": "jsonschema",
+    "version": "4.26.0"
+  },
+  {
+    "installed_license_files": [
+      "jsonschema_specifications-2025.9.1.dist-info/licenses/COPYING"
+    ],
+    "license_classifiers": [],
+    "license_expression": "MIT",
+    "license_metadata": null,
+    "name": "jsonschema-specifications",
+    "version": "2025.9.1"
+  },
+  {
+    "installed_license_files": [
+      "mpmath-1.3.0.dist-info/LICENSE"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: BSD License"
+    ],
+    "license_expression": null,
+    "license_metadata": "BSD",
+    "name": "mpmath",
+    "version": "1.3.0"
+  },
+  {
+    "installed_license_files": [
+      "mypy-1.15.0.dist-info/LICENSE",
+      "mypy/typeshed/LICENSE"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: MIT License"
+    ],
+    "license_expression": null,
+    "license_metadata": "MIT",
+    "name": "mypy",
+    "version": "1.15.0"
+  },
+  {
+    "installed_license_files": [
+      "mypy_extensions-1.1.0.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [],
+    "license_expression": "MIT",
+    "license_metadata": null,
+    "name": "mypy_extensions",
+    "version": "1.1.0"
+  },
+  {
+    "installed_license_files": [
+      "networkx-3.6.1.dist-info/licenses/LICENSE.txt"
+    ],
+    "license_classifiers": [],
+    "license_expression": "BSD-3-Clause",
+    "license_metadata": null,
+    "name": "networkx",
+    "version": "3.6.1"
+  },
+  {
+    "installed_license_files": [
+      "packaging-26.3.dist-info/licenses/LICENSE",
+      "packaging-26.3.dist-info/licenses/LICENSE.APACHE",
+      "packaging-26.3.dist-info/licenses/LICENSE.BSD",
+      "packaging/licenses/__init__.py",
+      "packaging/licenses/__pycache__/__init__.cpython-311.pyc",
+      "packaging/licenses/__pycache__/_spdx.cpython-311.pyc",
+      "packaging/licenses/_spdx.py"
+    ],
+    "license_classifiers": [],
+    "license_expression": "Apache-2.0 OR BSD-2-Clause",
+    "license_metadata": null,
+    "name": "packaging",
+    "version": "26.3"
+  },
+  {
+    "installed_license_files": [
+      "pip-24.0.dist-info/LICENSE.txt"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: MIT License"
+    ],
+    "license_expression": null,
+    "license_metadata": "MIT",
+    "name": "pip",
+    "version": "24.0"
+  },
+  {
+    "installed_license_files": [
+      "pluggy-1.7.0.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: MIT License"
+    ],
+    "license_expression": null,
+    "license_metadata": "MIT",
+    "name": "pluggy",
+    "version": "1.7.0"
+  },
+  {
+    "installed_license_files": [
+      "pydantic-2.13.5.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [],
+    "license_expression": "MIT",
+    "license_metadata": null,
+    "name": "pydantic",
+    "version": "2.13.5"
+  },
+  {
+    "installed_license_files": [
+      "pydantic_core-2.46.5.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [],
+    "license_expression": "MIT",
+    "license_metadata": null,
+    "name": "pydantic_core",
+    "version": "2.46.5"
+  },
+  {
+    "installed_license_files": [
+      "pytest-8.3.5.dist-info/LICENSE"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: MIT License"
+    ],
+    "license_expression": null,
+    "license_metadata": "MIT",
+    "name": "pytest",
+    "version": "8.3.5"
+  },
+  {
+    "installed_license_files": [
+      "python_dateutil-2.9.0.post0.dist-info/LICENSE"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: BSD License",
+      "License :: OSI Approved :: Apache Software License"
+    ],
+    "license_expression": null,
+    "license_metadata": "Dual License",
+    "name": "python-dateutil",
+    "version": "2.9.0.post0"
+  },
+  {
+    "installed_license_files": [
+      "pyyaml-6.0.3.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: MIT License"
+    ],
+    "license_expression": null,
+    "license_metadata": "MIT",
+    "name": "PyYAML",
+    "version": "6.0.3"
+  },
+  {
+    "installed_license_files": [
+      "referencing-0.37.0.dist-info/licenses/COPYING"
+    ],
+    "license_classifiers": [],
+    "license_expression": "MIT",
+    "license_metadata": null,
+    "name": "referencing",
+    "version": "0.37.0"
+  },
+  {
+    "installed_license_files": [
+      "regex-2026.9.29.dist-info/licenses/LICENSE.txt"
+    ],
+    "license_classifiers": [],
+    "license_expression": "Apache-2.0 AND CNRI-Python",
+    "license_metadata": null,
+    "name": "regex",
+    "version": "2026.9.29"
+  },
+  {
+    "installed_license_files": [
+      "rpds_py-2026.9.1.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [],
+    "license_expression": "MIT",
+    "license_metadata": null,
+    "name": "rpds-py",
+    "version": "2026.9.1"
+  },
+  {
+    "installed_license_files": [
+      "ruff-0.11.13.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: MIT License"
+    ],
+    "license_expression": null,
+    "license_metadata": "MIT",
+    "name": "ruff",
+    "version": "0.11.13"
+  },
+  {
+    "installed_license_files": [
+      "s3transfer-0.19.2.dist-info/LICENSE.txt"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: Apache Software License"
+    ],
+    "license_expression": null,
+    "license_metadata": "Apache License 2.0",
+    "name": "s3transfer",
+    "version": "0.19.2"
+  },
+  {
+    "installed_license_files": [
+      "setuptools-65.5.0.dist-info/LICENSE"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: MIT License"
+    ],
+    "license_expression": null,
+    "license_metadata": null,
+    "name": "setuptools",
+    "version": "65.5.0"
+  },
+  {
+    "installed_license_files": [
+      "six-1.17.0.dist-info/LICENSE"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: MIT License"
+    ],
+    "license_expression": null,
+    "license_metadata": "MIT",
+    "name": "six",
+    "version": "1.17.0"
+  },
+  {
+    "installed_license_files": [
+      "sympy-1.14.0.dist-info/licenses/AUTHORS",
+      "sympy-1.14.0.dist-info/licenses/LICENSE",
+      "sympy/parsing/latex/LICENSE.txt"
+    ],
+    "license_classifiers": [
+      "License :: OSI Approved :: BSD License"
+    ],
+    "license_expression": null,
+    "license_metadata": "BSD",
+    "name": "sympy",
+    "version": "1.14.0"
+  },
+  {
+    "installed_license_files": [
+      "typing_inspection-0.4.4.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [],
+    "license_expression": "MIT",
+    "license_metadata": null,
+    "name": "typing-inspection",
+    "version": "0.4.4"
+  },
+  {
+    "installed_license_files": [
+      "typing_extensions-4.16.0.dist-info/licenses/LICENSE"
+    ],
+    "license_classifiers": [],
+    "license_expression": "PSF-2.0",
+    "license_metadata": null,
+    "name": "typing_extensions",
+    "version": "4.16.0"
+  },
+  {
+    "installed_license_files": [
+      "urllib3-2.8.0.dist-info/licenses/LICENSE.txt"
+    ],
+    "license_classifiers": [],
+    "license_expression": "MIT",
+    "license_metadata": null,
+    "name": "urllib3",
+    "version": "2.8.0"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "window_seconds": 300,
+  "burst_threshold": 5,
+  "spray_threshold": 5,
+  "baseline": {
+    "mira": ["192.0.2.10"],
+    "tavi": ["2001:db8::10"]
+  }
+}
