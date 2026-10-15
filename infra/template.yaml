@@ -1,0 +1,130 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Optional undeployed synthetic authentication-log adapter; no output S3 writes.
+
+Parameters:
+  FunctionName:
+    Type: String
+    Default: lad-auth-review
+    AllowedPattern: '[a-z][a-z0-9-]{2,31}'
+
+Resources:
+  InputBucket:
+    Type: AWS::S3::Bucket
+    DependsOn: AnalyzerInvokePermission
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketName: !Sub '${AWS::AccountId}-${AWS::Region}-lad-synthetic-input'
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Event: s3:ObjectCreated:*
+            Function: !GetAtt Analyzer.Arn
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: prefix
+                    Value: incoming/
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpireSyntheticInput
+            Status: Enabled
+            Prefix: incoming/
+            ExpirationInDays: 7
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 1
+
+  InputBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref InputBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: '*'
+            Action: 's3:*'
+            Resource:
+              - !Sub 'arn:${AWS::Partition}:s3:::${AWS::AccountId}-${AWS::Region}-lad-synthetic-input'
+              - !Sub 'arn:${AWS::Partition}:s3:::${AWS::AccountId}-${AWS::Region}-lad-synthetic-input/*'
+            Condition:
+              Bool:
+                aws:SecureTransport: 'false'
+
+  SummaryLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${FunctionName}'
+      RetentionInDays: 14
+
+  AnalyzerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: ReadOnePrefixAndWriteOneLogGroup
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: ReadIncomingObjects
+                Effect: Allow
+                Action: s3:GetObject
+                Resource: !Sub 'arn:${AWS::Partition}:s3:::${AWS::AccountId}-${AWS::Region}-lad-synthetic-input/incoming/*'
+              - Sid: WriteSummaryStreams
+                Effect: Allow
+                Action:
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !Sub 'arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${FunctionName}:log-stream:*'
+
+  Analyzer:
+    Type: AWS::Serverless::Function
+    DependsOn: SummaryLogGroup
+    Properties:
+      FunctionName: !Ref FunctionName
+      CodeUri: ../src/
+      Handler: log_anomaly_detector.aws_lambda.lambda_handler
+      Runtime: python3.12
+      Architectures:
+        - arm64
+      MemorySize: 256
+      Timeout: 15
+      ReservedConcurrentExecutions: 2
+      Role: !GetAtt AnalyzerRole.Arn
+      EventInvokeConfig:
+        MaximumEventAgeInSeconds: 600
+        MaximumRetryAttempts: 1
+      Environment:
+        Variables:
+          SOURCE_BUCKET: !Sub '${AWS::AccountId}-${AWS::Region}-lad-synthetic-input'
+          RULE_CONFIG_JSON: '{}'
+
+  AnalyzerInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref Analyzer
+      Principal: s3.amazonaws.com
+      SourceAccount: !Ref AWS::AccountId
+      SourceArn: !Sub 'arn:${AWS::Partition}:s3:::${AWS::AccountId}-${AWS::Region}-lad-synthetic-input'

@@ -15,6 +15,7 @@ def main() -> int:
         [sys.executable, "-m", "ruff", "format", "--check", "."],
         [sys.executable, "-m", "mypy", "src", "--cache-dir=.cache/mypy"],
         [sys.executable, "-m", "pip", "check"],
+        [sys.executable, "tools/validate_iac.py"],
     ]
     output = ["Local verification; no remote workflow run implied.\n"]
     failed = False

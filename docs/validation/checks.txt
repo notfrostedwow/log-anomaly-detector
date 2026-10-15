@@ -1,9 +1,10 @@
 Local verification; no remote workflow run implied.
 
 $ python -m pytest -q --basetemp=.tmp/pytest
-........................................................................ [ 76%]
-......................                                                   [100%]
-94 passed in 0.24s
+........................................................................ [ 48%]
+........................................................................ [ 97%]
+...                                                                      [100%]
+147 passed in 0.36s
 exit_code=0
 
 $ python -m ruff check .
@@ -11,13 +12,17 @@ All checks passed!
 exit_code=0
 
 $ python -m ruff format --check .
-8 files already formatted
+14 files already formatted
 exit_code=0
 
 $ python -m mypy src --cache-dir=.cache/mypy
-Success: no issues found in 4 source files
+Success: no issues found in 6 source files
 exit_code=0
 
 $ python -m pip check
 No broken requirements found.
+exit_code=0
+
+$ python tools/validate_iac.py
+cfn-lint --template infra/template.yaml --regions us-east-1 (network disabled)
 exit_code=0

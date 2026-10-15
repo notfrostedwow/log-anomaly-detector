@@ -27,8 +27,24 @@ The first test run found a Windows test-fixture path-length issue: pytest used a
 short test IDs fixed it. Initial lint findings were corrected before the passing
 run. These failures were local development feedback, not skipped tests.
 
+Cloud checkpoint: `python tools/verify.py` passed **147 tests**, Ruff lint/format,
+strict mypy for six source files, `pip check`, and network-disabled cfn-lint.
+The tests include fake S3 bodies/clients, an SDK-injected handler, sanitized
+failures, object/event/key bounds, and assertions on the template's IAM scopes,
+storage controls, invocation permission and workflow permissions. A socket guard
+prevents network/DNS access during every test.
+
+IaC development corrections: the first wrapper used the wrong installed cfn-lint
+entry point; inspecting its local package metadata identified `cfnlint.runner`.
+A subsequent missing-profile error was fixed by providing a `[default]` region
+in the workspace-local placeholder config. Later validation passed without any
+network access. Review of installed SAM translator source also showed its S3
+event helper creates an account-scoped permission, so the final template uses an
+explicit bucket/account-scoped invocation permission and native S3 notification.
+
 ## Not executed
 
 No remote CI runs, AWS API calls, deployments, account connections, credential
-discovery, Docker, LocalStack, remote Git creation, push or publication. The cloud
-adapter and its offline template checks will have their own verification record.
+discovery, Docker, LocalStack, remote Git creation, push or publication. Lambda
+tests use offline fakes; they do not establish AWS integration behavior. The
+GitHub Actions Python 3.11/3.12 matrix is configured but has not run remotely.
