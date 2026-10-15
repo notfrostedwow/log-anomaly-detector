@@ -9,6 +9,7 @@ description = "Bounded, deterministic offline authentication-log rules"
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{name = "notfrostedwow"}]
+license = {file = "LICENSE"}
 dependencies = []
 
 [project.scripts]

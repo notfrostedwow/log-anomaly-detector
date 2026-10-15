@@ -5,7 +5,9 @@ failed-login bursts, password sprays and successful logins outside an explicit
 per-user source baseline. The rules are explainable; there is no machine learning.
 
 This separate portfolio project belongs to notfrostedwow. All included data is
-synthetic. Publication and the project license await parent review.
+synthetic. Original project code is [MIT licensed](LICENSE), approved by Zaheer
+Miah. Third-party dependencies retain their own licenses. Publication awaits
+parent review.
 
 ## Local setup
 

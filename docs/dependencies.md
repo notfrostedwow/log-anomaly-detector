@@ -8,8 +8,9 @@ Development dependencies are pinned in `requirements-dev.txt`. cfn-lint brings m
 of the transitive packages below; it is used only for offline template validation.
 Installed license declarations and license-file locations were checked locally on
 2026-10-15 and saved in [dependency-licenses.json](dependency-licenses.json).
-This is an inventory, not a legal opinion or a vulnerability audit. No project
-license is implied; see [LICENSE-STATUS.md](../LICENSE-STATUS.md).
+This is an inventory, not a legal opinion or a vulnerability audit. Zaheer Miah
+approved [MIT](../LICENSE) for original project code on 2026-10-15. That approval
+does not relicense dependencies or replace their notices.
 
 | Packages | Declared license / checked license text |
 | --- | --- |
