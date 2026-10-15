@@ -22,6 +22,10 @@ cfn-lint results in `docs/validation/checks.txt`. For a focused check/format:
 .venv/Scripts/python -m ruff format .
 ```
 
+The tests' startup hook creates the configured `--basetemp` parent before
+`tmp_path` fixtures run. Both the verifier and the focused command above work
+when a fresh checkout has no `.tmp` directory; no manual temp setup is required.
+
 Tests block sockets/DNS. Inject fake cloud clients rather than bypassing that
 guard. No LocalStack or Docker daemon is needed. Keep runtime dependencies at
 zero unless a reviewed requirement justifies otherwise. Recheck dependency

@@ -1,0 +1,62 @@
+Trailing whitespace in pytest diagnostics trimmed; raw capture: .cache/ci-repair/ci-repair-regression-before.raw.txt
+New regression tests against the unmodified parent conftest (expected failure).
+$ C:\Users\Zaheer\Documents\Portfolio\log-anomaly-detector\.venv\Scripts\python.exe -m pytest tests/test_temp_bootstrap.py -q --basetemp=.regression-temp --tb=short
+cwd=C:\Users\Zaheer\Documents\Portfolio\log-anomaly-detector\.cache\ci-repair\before
+FF                                                                       [100%]
+================================== FAILURES ===================================
+___________ test_missing_basetemp_parent_in_fresh_session[relative] ___________
+tests\test_temp_bootstrap.py:36: in test_missing_basetemp_parent_in_fresh_session
+    assert result.returncode == 0, result.stdout + result.stderr
+E   AssertionError: E                                                                        [100%]
+E     =================================== ERRORS ====================================
+E     ____________________ ERROR at setup of test_real_tmp_path _____________________
+E
+E     self = WindowsPath('C:/Users/Zaheer/Documents/Portfolio/log-anomaly-detector/.cache/ci-repair/before/.regression-temp/test_missing_basetemp_parent_i0/checkout/.tmp/pytest')
+E     mode = 448, parents = False, exist_ok = False
+E
+E         def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+E             """
+E             Create a new directory at this given path.
+E             """
+E             try:
+E     >           os.mkdir(self, mode)
+E     E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\Zaheer\\Documents\\Portfolio\\log-anomaly-detector\\.cache\\ci-repair\\before\\.regression-temp\\test_missing_basetemp_parent_i0\\checkout\\.tmp\\pytest'
+E
+E     C:\Users\Zaheer\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:1116: FileNotFoundError
+E     =========================== short test summary info ===========================
+E     ERROR tests/test_fixture.py::test_real_tmp_path - FileNotFoundError: [WinErro...
+E     1 error in 0.10s
+E
+E   assert 1 == 0
+E    +  where 1 = CompletedProcess(args=['C:\\Users\\Zaheer\\Documents\\Portfolio\\log-anomaly-detector\\.venv\\Scripts\\python.exe', '-...====\nERROR tests/test_fixture.py::test_real_tmp_path - FileNotFoundError: [WinErro...\n1 error in 0.10s\n', stderr='').returncode
+___________ test_missing_basetemp_parent_in_fresh_session[absolute] ___________
+tests\test_temp_bootstrap.py:36: in test_missing_basetemp_parent_in_fresh_session
+    assert result.returncode == 0, result.stdout + result.stderr
+E   AssertionError: E                                                                        [100%]
+E     =================================== ERRORS ====================================
+E     ____________________ ERROR at setup of test_real_tmp_path _____________________
+E
+E     self = WindowsPath('C:/Users/Zaheer/Documents/Portfolio/log-anomaly-detector/.cache/ci-repair/before/.regression-temp/test_missing_basetemp_parent_i1/checkout/.tmp/pytest')
+E     mode = 448, parents = False, exist_ok = False
+E
+E         def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+E             """
+E             Create a new directory at this given path.
+E             """
+E             try:
+E     >           os.mkdir(self, mode)
+E     E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\Zaheer\\Documents\\Portfolio\\log-anomaly-detector\\.cache\\ci-repair\\before\\.regression-temp\\test_missing_basetemp_parent_i1\\checkout\\.tmp\\pytest'
+E
+E     C:\Users\Zaheer\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:1116: FileNotFoundError
+E     =========================== short test summary info ===========================
+E     ERROR tests/test_fixture.py::test_real_tmp_path - FileNotFoundError: [WinErro...
+E     1 error in 0.09s
+E
+E   assert 1 == 0
+E    +  where 1 = CompletedProcess(args=['C:\\Users\\Zaheer\\Documents\\Portfolio\\log-anomaly-detector\\.venv\\Scripts\\python.exe', '-...====\nERROR tests/test_fixture.py::test_real_tmp_path - FileNotFoundError: [WinErro...\n1 error in 0.09s\n', stderr='').returncode
+=========================== short test summary info ===========================
+FAILED tests/test_temp_bootstrap.py::test_missing_basetemp_parent_in_fresh_session[relative]
+FAILED tests/test_temp_bootstrap.py::test_missing_basetemp_parent_in_fresh_session[absolute]
+2 failed in 1.26s
+
+exit_code=1

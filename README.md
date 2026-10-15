@@ -8,7 +8,7 @@ This is rule-based detection, with no ML or external services required.
 An original portfolio project for **notfrostedwow**. All included users and logs
 are made up; addresses use documentation-only IP ranges. The optional AWS adapter
 is undeployed and tested only with offline fakes. There is no hosted demo,
-certification claim or verified remote CI run.
+certification claim or verified green remote CI run for the current repair.
 
 ## Try the CLI
 
@@ -47,8 +47,9 @@ Windows PowerShell 5 may encode redirects as UTF-16, so use the Python capture
 script below to preserve the report's UTF-8 bytes.
 
 On Linux/macOS, use `.venv/bin/python` and `.venv/bin/log-anomaly-detector` for the
-same commands. Only Windows/Python 3.11.9 was run locally. The Linux CI matrix is
-configured for Python 3.11/3.12 and has not run remotely.
+same commands. Only Windows/Python 3.11.9 was run locally. Parent reported that the
+Linux Python 3.11/3.12 matrix failed because a fresh checkout lacked pytest's
+temp parent. The local repair passes; a later remote matrix run is still unverified.
 
 | Exit | Meaning |
 | --- | --- |
@@ -166,4 +167,5 @@ Read [ZAHEER-GUIDE.md](ZAHEER-GUIDE.md) for the walkthrough and interview discus
 and [CONTRIBUTING.md](CONTRIBUTING.md) for local contribution checks. Original code
 is [MIT licensed](LICENSE), Copyright (c) 2026 Zaheer Miah, with Zaheer's explicit
 approval. Dependencies retain [their own licenses/notices](docs/dependencies.md).
-Parent review controls publication; no remote repository was created or pushed.
+Parent published the initial project and controls publication of this repair.
+This repair has not been pushed.

@@ -1,0 +1,116 @@
+$ C:\Users\Zaheer\Documents\Portfolio\log-anomaly-detector\.venv\Scripts\python.exe -m pytest -q --basetemp=.tmp/pytest
+cwd=C:\Users\Zaheer\Documents\Portfolio\log-anomaly-detector\.cache\ci-repair\before
+.tmp existed before run: False
+........................................................................ [ 47%]
+.............EEEEEEE.................................................... [ 95%]
+.......                                                                  [100%]
+=================================== ERRORS ====================================
+________________ ERROR at setup of test_valid_config_and_file _________________
+
+self = WindowsPath('C:/Users/Zaheer/Documents/Portfolio/log-anomaly-detector/.cache/ci-repair/before/.tmp/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\Zaheer\\Documents\\Portfolio\\log-anomaly-detector\\.cache\\ci-repair\\before\\.tmp\\pytest'
+
+C:\Users\Zaheer\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:1116: FileNotFoundError
+______________ ERROR at setup of test_bad_config_file[encoding] _______________
+
+self = WindowsPath('C:/Users/Zaheer/Documents/Portfolio/log-anomaly-detector/.cache/ci-repair/before/.tmp/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\Zaheer\\Documents\\Portfolio\\log-anomaly-detector\\.cache\\ci-repair\\before\\.tmp\\pytest'
+
+C:\Users\Zaheer\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:1116: FileNotFoundError
+______________ ERROR at setup of test_bad_config_file[oversize] _______________
+
+self = WindowsPath('C:/Users/Zaheer/Documents/Portfolio/log-anomaly-detector/.cache/ci-repair/before/.tmp/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\Zaheer\\Documents\\Portfolio\\log-anomaly-detector\\.cache\\ci-repair\\before\\.tmp\\pytest'
+
+C:\Users\Zaheer\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:1116: FileNotFoundError
+_______________ ERROR at setup of test_bad_config_file[syntax] ________________
+
+self = WindowsPath('C:/Users/Zaheer/Documents/Portfolio/log-anomaly-detector/.cache/ci-repair/before/.tmp/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\Zaheer\\Documents\\Portfolio\\log-anomaly-detector\\.cache\\ci-repair\\before\\.tmp\\pytest'
+
+C:\Users\Zaheer\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:1116: FileNotFoundError
+____________ ERROR at setup of test_bad_config_file[duplicate-key] ____________
+
+self = WindowsPath('C:/Users/Zaheer/Documents/Portfolio/log-anomaly-detector/.cache/ci-repair/before/.tmp/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\Zaheer\\Documents\\Portfolio\\log-anomaly-detector\\.cache\\ci-repair\\before\\.tmp\\pytest'
+
+C:\Users\Zaheer\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:1116: FileNotFoundError
+_________________ ERROR at setup of test_regular_file_checks __________________
+
+self = WindowsPath('C:/Users/Zaheer/Documents/Portfolio/log-anomaly-detector/.cache/ci-repair/before/.tmp/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\Zaheer\\Documents\\Portfolio\\log-anomaly-detector\\.cache\\ci-repair\\before\\.tmp\\pytest'
+
+C:\Users\Zaheer\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:1116: FileNotFoundError
+______________ ERROR at setup of test_cli_reports_and_exit_codes ______________
+
+self = WindowsPath('C:/Users/Zaheer/Documents/Portfolio/log-anomaly-detector/.cache/ci-repair/before/.tmp/pytest')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\Zaheer\\Documents\\Portfolio\\log-anomaly-detector\\.cache\\ci-repair\\before\\.tmp\\pytest'
+
+C:\Users\Zaheer\AppData\Local\Programs\Python\Python311\Lib\pathlib.py:1116: FileNotFoundError
+=========================== short test summary info ===========================
+ERROR tests/test_cli_core.py::test_valid_config_and_file - FileNotFoundError:...
+ERROR tests/test_cli_core.py::test_bad_config_file[encoding] - FileNotFoundEr...
+ERROR tests/test_cli_core.py::test_bad_config_file[oversize] - FileNotFoundEr...
+ERROR tests/test_cli_core.py::test_bad_config_file[syntax] - FileNotFoundErro...
+ERROR tests/test_cli_core.py::test_bad_config_file[duplicate-key] - FileNotFo...
+ERROR tests/test_cli_core.py::test_regular_file_checks - FileNotFoundError: [...
+ERROR tests/test_cli_core.py::test_cli_reports_and_exit_codes - FileNotFoundE...
+144 passed, 7 errors in 2.18s
+
+exit_code=1

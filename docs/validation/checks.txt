@@ -2,9 +2,9 @@ Local verification; no remote workflow run implied.
 
 $ python -m pytest -q --basetemp=.tmp/pytest
 ........................................................................ [ 47%]
-........................................................................ [ 95%]
-.......                                                                  [100%]
-151 passed in 0.49s
+........................................................................ [ 94%]
+.........                                                                [100%]
+153 passed in 2.32s
 exit_code=0
 
 $ python -m ruff check .
@@ -12,7 +12,7 @@ All checks passed!
 exit_code=0
 
 $ python -m ruff format --check .
-17 files already formatted
+18 files already formatted
 exit_code=0
 
 $ python -m mypy src --cache-dir=.cache/mypy

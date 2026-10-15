@@ -1,0 +1,36 @@
+Fresh detached worktree at 4d893b520badd7b8316886cbf78ed829505d7979, with only repair conftest and new regression test overlaid.
+.tmp and .cache existed before run: False
+PYTHONPATH=C:\Users\Zaheer\Documents\Portfolio\log-anomaly-detector\.cache\ci-repair\after\src
+3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]
+C:\Users\Zaheer\Documents\Portfolio\log-anomaly-detector\.cache\ci-repair\after\src\log_anomaly_detector\__init__.py
+$ C:\Users\Zaheer\Documents\Portfolio\log-anomaly-detector\.venv\Scripts\python.exe tools/verify.py
+cwd=C:\Users\Zaheer\Documents\Portfolio\log-anomaly-detector\.cache\ci-repair\after
+
+$ python -m pytest -q --basetemp=.tmp/pytest
+........................................................................ [ 47%]
+........................................................................ [ 94%]
+.........                                                                [100%]
+153 passed in 2.32s
+exit_code=0
+
+$ python -m ruff check .
+All checks passed!
+exit_code=0
+
+$ python -m ruff format --check .
+18 files already formatted
+exit_code=0
+
+$ python -m mypy src --cache-dir=.cache/mypy
+Success: no issues found in 6 source files
+exit_code=0
+
+$ python -m pip check
+No broken requirements found.
+exit_code=0
+
+$ python tools/validate_iac.py
+cfn-lint --config-file infra/cfnlintrc.json --template infra/template.yaml --regions us-east-1 (network disabled)
+exit_code=0
+
+exit_code=0
