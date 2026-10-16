@@ -1,14 +1,19 @@
 # Log anomaly detector
 
+[![Offline checks](https://github.com/notfrostedwow/log-anomaly-detector/actions/workflows/checks.yml/badge.svg?branch=main)](https://github.com/notfrostedwow/log-anomaly-detector/actions/workflows/checks.yml)
+
+Python 3.11+ · CI on Python 3.11 and 3.12 · [MIT license](LICENSE)
+
 A working Python CLI for offline authentication-log analysis. It detects failed
 login bursts, password sprays across users and successful logins from sources
 outside an explicit baseline. Every finding explains its rule and evidence count.
 This is rule-based detection, with no ML or external services required.
 
-An original portfolio project for **notfrostedwow**. All included users and logs
-are made up; addresses use documentation-only IP ranges. The optional AWS adapter
-is undeployed and tested only with offline fakes. There is no hosted demo,
-certification claim or verified green remote CI run for the current repair.
+All included users and logs are synthetic; addresses use documentation-only IP
+ranges. Run everything locally without credentials. The optional S3/Lambda
+adapter and SAM template are **undeployed** and validated offline, not against AWS.
+
+[Try it](#try-the-cli) · [Detection rules](#input-and-rules) · [Architecture](#architecture) · [Security](SECURITY.md)
 
 ## Try the CLI
 
@@ -47,9 +52,8 @@ Windows PowerShell 5 may encode redirects as UTF-16, so use the Python capture
 script below to preserve the report's UTF-8 bytes.
 
 On Linux/macOS, use `.venv/bin/python` and `.venv/bin/log-anomaly-detector` for the
-same commands. Only Windows/Python 3.11.9 was run locally. Parent reported that the
-Linux Python 3.11/3.12 matrix failed because a fresh checkout lacked pytest's
-temp parent. The local repair passes; a later remote matrix run is still unverified.
+same commands. GitHub Actions runs the checks on Ubuntu with Python 3.11 and 3.12;
+the badge above links to the current results.
 
 | Exit | Meaning |
 | --- | --- |
@@ -141,7 +145,8 @@ network-disabled cfn-lint. Actual local commands/results are saved in
 [docs/verification.md](docs/verification.md). Tests cover positives, negatives,
 boundaries, timezones, CSV/JSONL, malformed data, config, bounds and fake cloud I/O.
 GitHub Actions has only `contents: read` and no credentials/deployment steps.
-There is no badge because no remote workflow run has been verified.
+The workflow badge links to live results; recorded local transcripts are separate
+from remote CI and do not demonstrate an AWS deployment.
 
 ## Tuning and limits
 
@@ -163,9 +168,27 @@ The schema uses narrow ASCII user identifiers; real vendor logs need a separatel
 tested converter. IP comparison is exact and canonical, without CIDR matching or
 reputation lookups. Plain IPv4 and IPv4-mapped IPv6 remain distinct.
 
+## Find your way around
+
+```text
+src/log_anomaly_detector/
+  core.py             Validated events, configuration and detection rules
+  io.py               Bounded JSONL/CSV parsing and regular-file checks
+  cli.py              Command-line interface and report output
+  lambda_adapter.py   Injected S3 event processing and aggregate summaries
+  aws_lambda.py       Optional AWS entry point
+samples/              Synthetic inputs and generated reports
+tests/                Rule, contract, CLI, adapter and infrastructure tests
+infra/template.yaml   Undeployed SAM design
+docs/                 Schema, cloud design and validation records
+```
+
+## Possible next steps
+
+Vendor-specific log converters and cross-file windows would make this more useful
+for real investigations. Neither is implemented. A deployed adapter would also
+need integration tests, operational alerting and cross-invocation deduplication.
+
 Read [ZAHEER-GUIDE.md](ZAHEER-GUIDE.md) for the walkthrough and interview discussion,
 and [CONTRIBUTING.md](CONTRIBUTING.md) for local contribution checks. Original code
-is [MIT licensed](LICENSE), Copyright (c) 2026 Zaheer Miah, with Zaheer's explicit
-approval. Dependencies retain [their own licenses/notices](docs/dependencies.md).
-Parent published the initial project and controls publication of this repair.
-This repair has not been pushed.
+is [MIT licensed](LICENSE), Copyright (c) 2026 Zaheer Miah. Dependencies retain [their own licenses/notices](docs/dependencies.md).
